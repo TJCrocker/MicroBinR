@@ -1,12 +1,11 @@
-Package: MicroBinner
+Package: MicroBinR
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: A visualization and Binning Package for Microsatilite Markers
+Version: 0.0.9000
+Author: Tom Crocker
+Maintainer: Tom Crocker <Tjcrocker1@gmail.com>
+Description: Estimates the PDF of a microsatilite marker useing kernel density estimation then uses a very simple binning algorythem to flexibly define bin limits.
+License: None
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
