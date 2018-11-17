@@ -12,7 +12,7 @@
 
 # function ----------------------------------------------------------------------------------------------
 
-sat_findLimits <- function (z, y, range = 20) {
+sat_findLimits <- function (z, y, range = 2) {
 
    l <- length(z)
 
@@ -42,38 +42,11 @@ sat_findLimits <- function (z, y, range = 20) {
 
   results <- unlist(results)
 
+  results[1] <- min(z) - 1
+
   return(results)
 }
 
-
-#sat_findLimtis1 <- function (z, y, range = 20) {
- # l <- seq_along(z)[range:(length(z) - range)]
-
-
-  #results <- purrr::map_dbl(l, function (l) {
-
-   # if (all(
-
-      # all values to the right and left are decending or
-      #   acending respectively
-    #  all(y[l:(l - range)] == sort(y[(l - range):l])),
-     # all(y[l:(l + range)] == sort(y[l:(l + range)]))
-
-
-    #)) {
-
-     # return(z[l])
-
-  #  } else {
-
-   #   return(NA)
-    #}
-
-  #})
-
-  #results <- results[!is.na(results)]
-  #return(results)
-  #}
 
 
 

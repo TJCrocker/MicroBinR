@@ -25,12 +25,16 @@ sat_plot <- function (x, z, y, center, lim.upper, title = NULL) {
 
   df1 <- tibble::tibble(x = x,
                 y = -max(y) / 10,
-                yend = 0)
+                yend = 0,
+                bin = purrr::map_dbl(x, function(x) {
+                  sum(dplyr::cumall(x > lim.upper)) + 1
+                }))
 
   plot <- ggplot2::ggplot(df, ggplot2::aes(z, y, colour = as.factor(bin%%2))) +
-    ggplot2::geom_point() +
+    ggplot2::geom_path(group = 1, size = 1.5) +
     ggplot2::scale_x_continuous(breaks = center) +
-    ggplot2::geom_segment(data = df1, inherit.aes = FALSE, ggplot2::aes(x = x, y = y, xend = x, yend = yend)) +
+    ggplot2::geom_segment(data = df1, inherit.aes = FALSE, ggplot2::aes(x = x, y = y, xend = x, yend = yend, colour = as.factor(bin%%2)), palette) +
+    scale_color_grey() +
     ggplot2::labs(x = "Fragment Length", y = "Density", title = title) +
     ggplot2::theme(
       axis.text.x = ggplot2::element_text(angle = -25),

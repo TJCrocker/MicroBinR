@@ -44,8 +44,11 @@ sat_binStats <- function (x, z, y, range = 20) {
     # Mean ----
     mean = sat_findStat(x, limits, mean),
 
-    # Skewness ----
-    diff_mean.center = abs(mean - center)
+    # Balance ----
+    balance = (mean - center)^2,
+
+    # Kurtosis ----
+    kurtosis = sat_findStat(x, limits, moments::kurtosis) - 3
 
   )
 

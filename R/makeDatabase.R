@@ -17,7 +17,7 @@ sat_makeDatabase <- function(df, ploidy) {
 
   # Build database subunit ----
   sub <- list(
-    list("complete" = FALSE, "sgma" = 0.4, "range" = 20, "ploidy" = ploidy),
+    list("complete" = FALSE, "h" = NULL, "range" = 20, "ploidy" = ploidy),
     list(),
     list()
   )

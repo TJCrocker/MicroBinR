@@ -16,7 +16,13 @@ sat_findCenter <- function (z, y, limits) {
 
   n <- 1:(length(limits) - 1)
 
-  center <- purrr::map_dbl(n, ~z[y == max(y[z < limits[.+1] & z > limits[.]])][1])
+  center <- purrr::map_dbl(n, ~{
+
+    index <- z > limits[.] & z < limits[.+1]
+    center <- z[index][y[index] == max(y[index])][[1]]
+    return(center)
+
+  })
 
   return(center)
 }

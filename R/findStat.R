@@ -12,11 +12,11 @@
 
 # function ----------------------------------------------------------------------------------------------
 
-sat_findStat <- function (x, limits, FUN = length) {
+sat_findStat <- function (frag, lim, FUN = length) {
 
-  n <- 1:(length(limits) - 1)
+  n <- 1:(length(lim) - 1)
 
-  stat <- purrr::map_dbl(n, ~FUN(x[x < limits[.+1] & x > limits[.]]))
+  stat <- purrr::map_dbl(n, ~FUN(frag[frag < lim[.+1] & frag > lim[.]]))
 
   return(stat)
 
