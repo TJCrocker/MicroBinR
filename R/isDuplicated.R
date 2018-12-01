@@ -13,7 +13,7 @@
 
 # function ----------------------------------------------------------------------------------------------
 
-sat_isDuplicated <- function (data) {
+isDuplicated <- function (data) {
 
   # Find names ----
   names <- names(data)
@@ -23,7 +23,6 @@ sat_isDuplicated <- function (data) {
 
   # Coerce data columns to matrix ----
   x <- as.matrix(data[-1])
-
 
   # Find the length and width of the input data ----
   l <- length(x[,1])

@@ -1,4 +1,4 @@
-#' sat_tidy
+#' tidy
 #'
 #' sat_tidy takes each locus from a the sat database, and puts it into tidy format. An additional duplicate column is added indicating whether raw fragment lengths are identical to fragment lengths befor them for a given locus and individual.
 #'
@@ -10,10 +10,10 @@
 
 # function ----------------------------------------------------------------------------------------------
 
-sat_tidy <- function (data) {
+tidy <- function (data) {
 
     # Test for duplicates ----
-    dup <- sat_isDuplicated(data)
+    dup <- isDuplicated(data)
 
     # Find ploidy and length of input ----
     p <- length(data) - 1

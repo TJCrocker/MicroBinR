@@ -1,6 +1,6 @@
-#' sat_makeDatabase
+#' makeDatabase
 #'
-#' A function that builds a repository of named lists for storing the outputs of other SSRr functions.
+#' A function that builds a repository of named lists from a tidy input database for storing the outputs of other MicroBinR functions.
 #'
 #'@param df a data frame like object containing raw SSR fragment length data
 #'@param ploidy  the number of alleles per locus per indiviual.
@@ -10,10 +10,7 @@
 #'
 #'@export
 
-
-# function ----------------------------------------------------------------------------------
-
-sat_makeDatabase <- function(df, ploidy) {
+makeDatabase <- function(df, ploidy) {
 
   # Build database subunit ----
   sub <- list(
@@ -42,14 +39,11 @@ sat_makeDatabase <- function(df, ploidy) {
       repo[[i]]$data <- df[c(1, i+1)]
       names(repo[[i]]$data) <- c("id", "A1")
     } else {
-      repo[[i]]$data <- sat_getData(df, i, ploidy)
+      repo[[i]]$data <- getData(df, i, ploidy)
     }
 
-    repo[[i]]$tidy <- sat_tidy(repo[[i]]$data)
+    repo[[i]]$tidy <- tidy(repo[[i]]$data)
   }
 
   return(repo)
 }
-
-
-

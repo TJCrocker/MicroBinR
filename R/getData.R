@@ -1,4 +1,4 @@
-#' sat_getData
+#'getData
 #'
 #' sat_getData returns the ID and fragment length columns for a locus from rectangular input data
 #'
@@ -10,7 +10,7 @@
 
 # function ----------------------------------------------------------------------------------------------
 
-sat_getData <- function (df, locus_num, ploidy) {
+getData <- function (df, locus_num, ploidy) {
 
   # return columns from df containing ID and frag_len for a locus ----
   data <- df[c(1, locus_num * (ploidy) + (0:(ploidy-1)))]

@@ -1,18 +1,20 @@
-#' sat_findStat
+#' findStat
 #'
-#' sat_findStat sorts a vector of fragment lengths into bins and applies a function to each bin seporately.
+#' returns descriptive statistics about the raw fragment leanghts in each bin
 #'
-#'@param x a vector of raw fragment lengths
-#'@param limits a vector of bin limits (range of limits must encompass range of x)
-#'@param FUN the function to be applied to each bin (must produce single numeric for each bin)
+#'@param frag vector of raw fragment lengths
+#'@param lim a vector of bin limits
+#'@param FUN a function to be applied the fragments within each bin
 #'
-#'@return a numeric vector same length as number of bins (length(limits) - 1)
+#'@return a vector of doubbles
 #'
 #'@export
+#'
 
-# function ----------------------------------------------------------------------------------------------
 
-sat_findStat <- function (frag, lim, FUN = length) {
+findStat <- function (frag, lim, FUN) {
+
+  stopifnot(is.function(FUN))
 
   n <- 1:(length(lim) - 1)
 
