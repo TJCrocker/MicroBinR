@@ -4,7 +4,7 @@
 \alias{ggDensityPlot}
 \title{ggDensityPlot}
 \usage{
-ggDensityPlot(frag, x, y, center, lim, title = NULL)
+ggDensityPlot(frag, x, y, center, lim, redo, title = NULL)
 }
 \arguments{
 \item{frag}{a vector of microsatilite fragment length}

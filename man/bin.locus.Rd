@@ -4,10 +4,12 @@
 \alias{bin.locus}
 \title{bin.locus}
 \usage{
-bin.locus(frag)
+bin.locus(frag, p = 0.05)
 }
 \arguments{
 \item{frag}{a vector of microsatilite fragment lengths}
+
+\item{p}{the cut-off p-value for selecting errors}
 }
 \value{
 a list containing results of bandwidth estimation, KDE, bin limits, central values, mean and frequency.

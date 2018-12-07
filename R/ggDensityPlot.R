@@ -15,7 +15,7 @@
 #'
 
 
-ggDensityPlot <- function (frag, x, y, center, lim, title = NULL) {
+ggDensityPlot <- function (frag, x, y, center, lim, redo, title = NULL) {
 
 
   df <- tibble::tibble(x = x,
@@ -23,15 +23,24 @@ ggDensityPlot <- function (frag, x, y, center, lim, title = NULL) {
                        bin = purrr::map_dbl(x, ~sum(dplyr::cumall(. > lim[-1])) + 1)
   )
 
-  df1 <- tibble::tibble(frag = frag,
+  df1 <- tibble::tibble(frag = frag[!redo],
                         y = -max(y) / 10,
-                        yend = 0
+                        yend = 0,
+                        bin = purrr::map_dbl(frag, ~sum(dplyr::cumall(. > lim[-1])) + 1)
   )
+
+  df2 <- tibble::tibble(frag = frag[redo],
+                        y = -max(y) / 10,
+                        yend = 0,
+                        bin = purrr::map_dbl(frag, ~sum(dplyr::cumall(. > lim[-1])) + 1)
+  )
+
 
   plot <- ggplot2::ggplot(df, ggplot2::aes(x, y, colour = as.factor(bin%%2))) +
     ggplot2::geom_path(group = 1, size = 1.5) +
     ggplot2::scale_x_continuous(breaks = center) +
-    ggplot2::geom_segment(data = df1, inherit.aes = FALSE, ggplot2::aes(x = frag, y = y, xend = frag, yend = yend)) +
+    ggplot2::geom_segment(data = df2, inherit.aes = FALSE, ggplot2::aes(x = frag, y = y, xend = frag, yend = yend), colour = "red") +
+    ggplot2::geom_segment(data = df1, inherit.aes = FALSE, ggplot2::aes(x = frag, y = y, xend = frag, yend = yend), colour = "black") +
     ggplot2::labs(x = "Fragment Length", y = "Density", title = title) +
     ggplot2::coord_fixed(ratio = (max(x) - min(x)) / (max(y) * 2)) +
     ggplot2::theme(
@@ -42,3 +51,4 @@ ggDensityPlot <- function (frag, x, y, center, lim, title = NULL) {
 
   return(plot)
 }
+
